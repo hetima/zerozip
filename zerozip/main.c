@@ -93,6 +93,11 @@ int zerozip(const char *fromFile, const char *toFile)
         err = unzGoToNextFile(uf);
         if (err!=UNZ_OK){
             //printf("error %d with zipfile in unzGoToNextFile\n",err);
+            
+            if (err==UNZ_END_OF_LIST_OF_FILE) {
+                err=UNZ_OK;
+            }
+            
             break;
         }
     }
